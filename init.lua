@@ -17,7 +17,9 @@ for k, v in pairs(g) do
 end
 
 -- require
-require("core.options")
-require("core.packman")
-require("core.keymaps")
-require("core.autocmds")
+require("config.options")
+require("config.packman")
+require("config.keymaps")
+require("config.autocmds")
+
+vim.cmd[[colorscheme dracula]]
