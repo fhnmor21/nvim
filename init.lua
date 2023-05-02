@@ -16,18 +16,8 @@ for k, v in pairs(g) do
     vim.g[k] = v
 end
 
--- set colorschdmd
-colorscheme = "dracula"
-
 -- require
-for _, source in ipairs {
-    "core.options",
-    --"core.lazy",
-    "core.keymaps",
-    "core.autocmds",
-  } do
-    local status_ok, fault = pcall(require, source)
-    if not status_ok then 
-        vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) 
-    end
-  end
+require("core.options")
+require("core.packman")
+require("core.keymaps")
+require("core.autocmds")
