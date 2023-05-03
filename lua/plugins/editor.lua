@@ -40,7 +40,6 @@ return {
       { "<leader>sw", Util.telescope("grep_string"), desc = "Word (root dir)" },
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
---[[      
       {
         "<leader>ss",
         Util.telescope("lsp_document_symbols", {
@@ -77,7 +76,6 @@ return {
         }),
         desc = "Goto Symbol (Workspace)",
       },
-]]--
     },
     opts = {
       defaults = {
