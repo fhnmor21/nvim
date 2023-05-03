@@ -154,7 +154,6 @@ return {
     },
   },
 
---[[
  -- lsp symbol navigation for lualine
  {
   "SmiteshP/nvim-navic",
@@ -176,7 +175,7 @@ return {
     }
   end,
 },
-]]--
+
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
