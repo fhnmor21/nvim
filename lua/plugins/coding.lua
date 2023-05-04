@@ -74,11 +74,13 @@ return {
         end, opts.ensure_installed)
       end
       require("nvim-treesitter.configs").setup(opts)
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     end,
   },
 
-   -- snippets
-   {
+  -- snippets
+  {
     "L3MON4D3/LuaSnip",
     build = (not jit.os:find("Windows"))
         and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
@@ -195,15 +197,6 @@ return {
       end
     end,
   },
---[[
-  {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.pairs").setup(opts)
-    end,
-  },
-]]--
 
   -- surround
   {
