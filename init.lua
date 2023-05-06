@@ -18,6 +18,6 @@ end
 
 -- require
 require("config.options")
-require("config.packman")
+require("config.plugins")
 require("config.keymaps")
 require("config.autocmds")
