@@ -1,5 +1,7 @@
 local opts = {
+	autoindent = true, -- copy indent from current line when starting new one
 	backup = false, -- creates a backup file
+	backspace = "indent,eol,start", -- allow backspace on indent, end of line or insert mode start position
 	breakindent = true, -- Wrap indent to match  line start
 	clipboard = "unnamedplus", -- Connection to the system clipboard
 	cmdheight = 0, -- hide command line unless needed
@@ -24,14 +26,14 @@ local opts = {
 	numberwidth = 4, -- set number column width to 2 {default 4}
 	preserveindent = true, -- Preserve indent structure as much as possible
 	pumheight = 10, -- Height of the pop up menu
-	relativenumber = false, -- Show relative numberline
+	relativenumber = true, -- Show relative numberline
 	scrolloff = 8, -- Number of lines to keep above and below the cursor
 	shiftwidth = 2, -- Number of space inserted for indentation
 	showmode = false, -- Disable showing modes in command line
 	showtabline = 2, -- always display tabline
 	sidescrolloff = 8, -- Number of columns to keep at the sides of the cursor
 	signcolumn = "yes", -- Always show the sign column
-	smartcase = true, -- Case sensitivie searching
+	smartcase = true, -- if you include mixed case in your search, assumes you want case-sensitive
 	smartindent = true, -- Smarter autoindentation
 	splitbelow = true, -- Splitting a new window below the current one
 	splitkeep = vim.fn.has("nvim-0.9") == 1 and "screen" or nil, -- Maintain code view when splitting
@@ -138,6 +140,5 @@ for k, v in pairs(opts) do
 	vim.opt[k] = v
 end
 
+vim.cmd [[set iskeyword+=-]]
 -- vim.cmd "set whichwrap+=<,>,[,],h,l"
--- vim.cmd [[set iskeyword+=-]]
--- vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

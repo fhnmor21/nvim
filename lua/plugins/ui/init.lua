@@ -15,7 +15,7 @@ return {
   require("plugins.ui.indent_blankline"),
 
  -- lsp symbol navigation for lualine
-  require("plugins.ui.navic"),
+ -- require("plugins.ui.navic"),
 
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },

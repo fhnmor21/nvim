@@ -1,3 +1,8 @@
+-- FIXME
+if true then
+  return {}
+end
+
 return {
   -- lspconfig
   {
