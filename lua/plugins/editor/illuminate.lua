@@ -1,7 +1,28 @@
 return {
   "RRethy/vim-illuminate",
   event = { "BufReadPost", "BufNewFile" },
-  opts = { delay = 200 },
+  opts = { 
+    providers = {
+      "lsp",
+      "treesitter",
+      "regex",
+    },
+    -- delay: delay in milliseconds
+    delay = 120,
+    -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
+    filetypes_denylist = {
+      "fugitive",
+      "alpha",
+      "NeoTree",
+      "packer",
+      "Trouble",
+      "spectre_panel",
+      "toggleterm",
+      "DressingSelect",
+      "TelescopePrompt",
+    },
+    under_cursor = true,
+  },
   config = function(_, opts)
     require("illuminate").configure(opts)
 

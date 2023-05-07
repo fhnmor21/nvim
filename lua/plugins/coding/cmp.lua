@@ -3,7 +3,7 @@ return {
   version = false, -- last release is way too old
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    --- FIXME "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
@@ -33,7 +33,7 @@ return {
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       }),
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
+        --- FIXME { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
@@ -47,11 +47,13 @@ return {
           return item
         end,
       },
+      --[[ FIXME
       experimental = {
         ghost_text = {
           hl_group = "LspCodeLens",
         },
       },
+      ]]--
     }
   end,
 }

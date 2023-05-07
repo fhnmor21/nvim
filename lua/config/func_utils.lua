@@ -43,6 +43,15 @@ function M.get_root()
   return root
 end
 
+--- Call function if a condition is met
+---@param func function The function to run
+---@param condition boolean # Whether to run the function or not
+---@return any|nil result # the result of the function running or nil
+function M.conditional_func(func, condition, ...)
+  -- if the condition is true or no condition is provided, evaluate the function with the rest of the parameters and return the result
+  if condition and type(func) == "function" then return func(...) end
+end
+
 function M.fg(name)
   ---@type {foreground?:number}?
   local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name }) or vim.api.nvim_get_hl_by_name(name, true)
@@ -127,7 +136,7 @@ function M.lsp_disable(server, cond)
 end
 
 -- this will return a function that calls telescope.
--- cwd will default to lazyvim.util.get_root
+-- cwd will default to func_utils.get_root
 -- for `files`, git_files or find_files will be chosen depending on .git
 function M.telescope(builtin, opts)
   local params = { builtin = builtin, opts = opts }

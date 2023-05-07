@@ -12,8 +12,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- better up/down
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -28,12 +28,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<A-Down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-Up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<A-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Insert Mode cursor movement
 map("i", "<C-h>", "<Left>", { desc = "Insert Mode - Move Left" })
@@ -49,35 +49,30 @@ if Util.has("bufferline.nvim") then
 	map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 	map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<leader>br", "<cmd>BufferLineCloseRight<cr>", { desc = "Close all buffers to the right" })
+  map("n", "<leader>bl", "<cmd>BufferLineCloseLeft<cr>", { desc = "Close all buffers to the left" })
+  map("n", "<leader>bc",
+	    "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
+	    { desc = "Close all buffers except current" })
 else
 	map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 	map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 	map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 	map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end
-map(
-	"n",
-	"<leader>bc",
-	"<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
-	{ desc = "Close all buffers except current" }
-)
---map("n", "<leader>bC", function() Util.close_all() end, {desc = "Close all buffers"})
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bl", "<cmd>BufferLineCloseLeft<cr>", { desc = "Close all buffers to the left" })
-map("n", "<leader>br", "<cmd>BufferLineCloseRight<cr>", { desc = "Close all buffers to the right" })
+
+-- map("n", "<leader>bC", function() Util.close_all() end, {desc = "Close all buffers"})
+-- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
-map(
-	"n",
-	"<leader>ur",
-	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-	{ desc = "Redraw / clear hlsearch / diff update" }
-)
+map("n", "<leader>ur",
+	  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+	  { desc = "Redraw / clear hlsearch / diff update" })
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
@@ -107,9 +102,9 @@ map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
+-- quickfix shortcuts
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-
 if not Util.has("trouble.nvim") then
 	map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
 	map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
@@ -118,7 +113,7 @@ end
 -- stylua: ignore start
 
 -- toggle options
-map("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+-- FIXME: LSP map("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
 map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
 map("n", "<leader>ul", function() Util.toggle("relativenumber", true) Util.toggle("number") end, { desc = "Toggle Line Numbers" })
