@@ -1,10 +1,5 @@
---- FIXME
-if true then 
-  return {}
-end
-
 return {
-
-  --require("plugins.lsp.null-ls"),
+  require("plugins.lsp.lspconfig"),
   require("plugins.lsp.mason"),
+  require("plugins.lsp.null-ls"),
 }

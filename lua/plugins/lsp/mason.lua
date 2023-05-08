@@ -2,30 +2,48 @@ local Util = require("config.func_utils")
 return {
   "williamboman/mason.nvim",
   cmd = "Mason",
+  dependencies = {
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+    'jay-babu/mason-null-ls.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
+  },
   keys = { 
     { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } 
   },
   opts = {
-    ensure_installed = {
-      "stylua",
-      "shfmt",
-    },
   },
   build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-  --[[
-  ---@param opts MasonSettings | {ensure_installed: string[]}
   config = function(_, opts)
     require("mason").setup(opts)
-    local mr = require("mason-registry")
-    local function ensure_installed()
-      Util.ensure_installed(mr, opts)
-    end
+    require("mason-lspconfig").setup()
+    require("mason-lspconfig").setup_handlers({
+      function(server_name)
+        require("lspconfig")[server_name].setup({})
+      end,
+      ["lua_ls"] = function()
+        require("lspconfig").lua_ls.setup({
+          settings = { -- custom settings for lua
+            Lua = {
+              -- make the language server recognize "vim" global
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                -- make language server aware of runtime files
+                library = {
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
+              },
+            },
+          },
+        })
+      end
+    })
 
-    if mr.refresh then
-      mr.refresh(ensure_installed)
-    else
-      ensure_installed()
-    end
-  end,
-  ]]--
+    require("mason-null-ls").setup({
+      automatic_setup = true,
+    })
+  end
 }
