@@ -6,10 +6,10 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'jay-babu/mason-null-ls.nvim',
-    'jose-elias-alvarez/null-ls.nvim',
+    -- 'jose-elias-alvarez/null-ls.nvim',
   },
-  keys = { 
-    { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } 
+  keys = {
+    { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" }
   },
   opts = {
   },
@@ -23,7 +23,8 @@ return {
       end,
       ["lua_ls"] = function()
         require("lspconfig").lua_ls.setup({
-          settings = { -- custom settings for lua
+          settings = {
+                       -- custom settings for lua
             Lua = {
               -- make the language server recognize "vim" global
               diagnostics = {
@@ -47,3 +48,4 @@ return {
     })
   end
 }
+

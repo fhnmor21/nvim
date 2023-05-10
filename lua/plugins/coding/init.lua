@@ -16,18 +16,25 @@ return {
 
   -- git
 	require("plugins.coding.git_signs"),
+
 	{
 		"tpope/vim-fugitive"
-	}
+	},
 
 	-- code refactoring
-	-- require("plugins.coding.refactoring"),
+	require("plugins.coding.refactoring"),
 
 	-- c++ tools
-	--[[
 	{
 		"Badhi/nvim-treesitter-cpp-tools",
+		event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = {},
+		config = function(_, opts)
+			require 'nt-cpp-tools'.setup({
+				header_extension = {'h', 'hpp'}, -- optional
+    	source_extension = {'c', 'cpp', 'cxx'}, -- optional
+			})
+		end
 	},
-  ]]--
 }

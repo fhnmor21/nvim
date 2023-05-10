@@ -16,6 +16,8 @@ return  {
         return require("config.func_utils").has("nvim-cmp")
       end,
     },
+    "ray-x/lsp_signature.nvim",
+    "glepnir/lspsaga.nvim",
   },
   ---@class PluginLspOpts
   opts = {
@@ -47,7 +49,7 @@ return  {
   config = function(_, opts)
     -- setup autoformat
     require("plugins.lsp.format").autoformat = opts.autoformat
-    
+
     -- setup formatting and keymaps
     local Util = require("config.func_utils")
     Util.on_attach(function(client, buffer)
@@ -60,7 +62,7 @@ return  {
       name = "DiagnosticSign" .. name
       vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
     end
-    
+
     if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
       opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
       or function(diagnostic)
@@ -72,46 +74,26 @@ return  {
         end
       end
     end
-    
+
     vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-    
-    --[[
-    local capabilities require("cmp_nvim_lsp").default_capabilities()
 
-    local has_lspconfig, lspconfig = pcall(require, "lspconfig")
+    local data = require("config.data")
+    require "lsp_signature".setup({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "rounded"
+      },
+      hint_prefix = data.icons.misc.Squirrel,
+    })
 
-    if has_lspconfig then
-      -- configure lua server (with special settings)
-      lspconfig["lua_ls"].setup({
-        capabilities = capabilities,
-        settings = { -- custom settings for lua
-          Lua = {
-            -- make the language server recognize "vim" global
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              -- make language server aware of runtime files
-              library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.stdpath("config") .. "/lua"] = true,
-              },
-            },
-          },
-        },
-      })
-    end
+    require("lspsaga").setup({
+      -- keybinds for navigation in lspsaga window
+      scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
+      -- use enter to open file with definition preview
+      definition = {
+        edit = "<CR>",
+      },
+    })
 
-    -- get all the servers that are available thourgh mason-lspconfig
-    local have_mason, mlsp = pcall(require, "mason-lspconfig")
-    local all_mslp_servers = {}
-
-    if have_mason then
-      all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-      mlsp.setup({ ensure_installed = all_mslp_servers })
-      mlsp.setup_handlers({ setup })
-    end
-
-    ]]--
   end,
 }
