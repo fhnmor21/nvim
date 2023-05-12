@@ -2,13 +2,13 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
   keys = {
-    {
-      "<leader>fE",
-      function()
-        require("neo-tree.command").execute({ toggle = true, dir = require("config.func_utils").get_root() })
-      end,
-      desc = "Explorer NeoTree (root dir)",
-    },
+    -- {
+    --   "<leader>fE",
+    --   function()
+    --     require("neo-tree.command").execute({ toggle = true, dir = require("config.func_utils").get_root() })
+    --   end,
+    --   desc = "Explorer NeoTree (root dir)",
+    -- },
     {
       "<leader>fe",
       function()
@@ -17,7 +17,7 @@ return {
       desc = "Explorer NeoTree (cwd)",
     },
     { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (cwd)",      remap = true },
-    { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (root dir)", remap = true },
+    -- { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (root dir)", remap = true },
   },
   deactivate = function()
     vim.cmd([[Neotree close]])

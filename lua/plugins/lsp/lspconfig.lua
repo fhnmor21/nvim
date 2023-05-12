@@ -19,7 +19,6 @@ return {
     "ray-x/lsp_signature.nvim",
     "glepnir/lspsaga.nvim",
   },
-  ---@class PluginLspOpts
   opts = {
     -- options for vim.diagnostic.config()
     diagnostics = {
@@ -83,7 +82,7 @@ return {
       handler_opts = {
         border = "rounded"
       },
-      hint_prefix = data.icons.misc.Squirrel .. " ",
+      hint_prefix = data.icons.misc.Squirrel .. "  ",
     })
 
     require("lspsaga").setup({
