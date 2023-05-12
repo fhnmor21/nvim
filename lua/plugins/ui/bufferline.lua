@@ -2,7 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   event = "VeryLazy",
   keys = {
-    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
   },
   opts = {
@@ -16,7 +16,7 @@ return {
       diagnostics_indicator = function(_, _, diag)
         local icons = require("config.data").icons.diagnostics
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-          .. (diag.warning and icons.Warn .. diag.warning or "")
+            .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
       offsets = {
@@ -30,3 +30,4 @@ return {
     },
   },
 }
+

@@ -1,4 +1,3 @@
-local Util = require("config.func_utils")
 return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
@@ -17,7 +16,7 @@ return {
       end,
       desc = "Explorer NeoTree (cwd)",
     },
-    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (cwd)", remap = true },
+    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (cwd)",      remap = true },
     { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (root dir)", remap = true },
   },
   deactivate = function()

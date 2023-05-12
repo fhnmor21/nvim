@@ -14,12 +14,12 @@ return {
   -- indent guides for Neovim
   require("plugins.ui.indent_blankline"),
 
- -- lsp symbol navigation for lualine
- -- require("plugins.ui.navic"),
+  -- lsp symbol navigation for lualine
+  -- require("plugins.ui.navic"),
 
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
   -- ui components
-  { "MunifTanjim/nui.nvim", lazy = true },
+  { "MunifTanjim/nui.nvim",        lazy = true },
 }

@@ -1,7 +1,7 @@
 return {
   "RRethy/vim-illuminate",
   event = { "BufReadPost", "BufNewFile" },
-  opts = { 
+  opts = {
     providers = {
       "lsp",
       "treesitter",

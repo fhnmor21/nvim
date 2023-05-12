@@ -1,5 +1,4 @@
 return {
-
   -- fuzzy finder
   require("plugins.editor.telescope"),
 

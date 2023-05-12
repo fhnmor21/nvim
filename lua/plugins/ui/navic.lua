@@ -16,5 +16,5 @@ return {
       depth_limit = 5,
       icons = require("config.data").icons.kinds,
     }
-    end,
-  }
+  end,
+}
