@@ -44,7 +44,6 @@ return {
       timeout_ms = nil,
     },
   },
-  ---@param opts PluginLspOpts
   config = function(_, opts)
     -- setup autoformat
     require("plugins.lsp.format").autoformat = opts.autoformat

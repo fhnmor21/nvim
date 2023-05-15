@@ -30,7 +30,6 @@ return {
     { "<bs>",      desc = "Decrement selection", mode = "x" },
   },
   opts = {
-    highlight = { enable = true },
     indent = { enable = true },
     context_commentstring = { enable = true, enable_autocmd = false },
     ensure_installed = {
@@ -59,7 +58,6 @@ return {
   },
   config = function(_, opts)
     if type(opts.ensure_installed) == "table" then
-      ---@type table<string, boolean>
       local added = {}
       opts.ensure_installed = vim.tbl_filter(function(lang)
         if added[lang] then
@@ -70,7 +68,7 @@ return {
       end, opts.ensure_installed)
     end
     require("nvim-treesitter.configs").setup(opts)
-    vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.opt.foldmethod = "indent"
+    -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   end,
 }

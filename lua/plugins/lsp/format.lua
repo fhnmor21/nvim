@@ -18,7 +18,6 @@ function M.toggle()
   end
 end
 
----@param opts? {force?:boolean}
 function M.format(opts)
   local buf = vim.api.nvim_get_current_buf()
   if vim.b.autoformat == false and not (opts and opts.force) then
