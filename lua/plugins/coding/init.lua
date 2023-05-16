@@ -20,11 +20,14 @@ return {
 
   -- code refactoring
   require("plugins.coding.refactoring"),
+  -- c++ tools
+  require("plugins.coding.nt-cpp-tools"),
+
+  -- code action menu
+  require("action-menu")
 
   -- code navigator
   --  require("plugins.coding.code-navigator"),
 
-  -- c++ tools
-  require("plugins.coding.nt-cpp-tools"),
 
 }
