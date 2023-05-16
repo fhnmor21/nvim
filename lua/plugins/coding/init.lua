@@ -24,7 +24,7 @@ return {
   require("plugins.coding.nt-cpp-tools"),
 
   -- code action menu
-  require("action-menu")
+  require("plugins.coding.action-menu")
 
   -- code navigator
   --  require("plugins.coding.code-navigator"),
