@@ -16,10 +16,14 @@ return {
 
   -- git
   require("plugins.coding.git_signs"),
-  require("plugins.coding.fugitive"),
+  -- require("plugins.coding.fugitive"),
 
   -- code refactoring
-  require("plugins.coding.refactoring"),
+  -- require("plugins.coding.refactoring"),
+
+  -- code comment
+  require("plugins.coding.comment"),
+
   -- c++ tools
   require("plugins.coding.nt-cpp-tools"),
 
