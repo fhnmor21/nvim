@@ -25,6 +25,8 @@ map("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 -- Move Lines
 map("n", "<A-Down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<A-Up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
 map("i", "<A-Down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
@@ -40,6 +42,8 @@ map("i", "<C-e>", "<End>", { desc = "Insert Mode - End Of Line" })
 
 -- buffers
 if Util.has("bufferline.nvim") then
+  map("n", "<A-Left>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<A-Right>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
   map("n", "<C-t>h", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
   map("n", "<C-t>l", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
   map("n", "<leader>b<", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
