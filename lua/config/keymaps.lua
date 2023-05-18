@@ -40,8 +40,10 @@ map("i", "<C-e>", "<End>", { desc = "Insert Mode - End Of Line" })
 
 -- buffers
 if Util.has("bufferline.nvim") then
-  map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-  map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<C-t>h", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<C-t>l", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "<leader>b<", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "<leader>b>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
   map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
   map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
   map("n", "<leader>br", "<cmd>BufferLineCloseRight<cr>", { desc = "Close all buffers to the right" })
@@ -50,8 +52,10 @@ if Util.has("bufferline.nvim") then
     "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
     { desc = "Close all buffers except current" })
 else
-  map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-  map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "<C-t>h", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "<C-t>h", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "<leader>b<", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "<leader>b>", "<cmd>bnext<cr>", { desc = "Next buffer" })
   map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end

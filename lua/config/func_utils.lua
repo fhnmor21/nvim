@@ -9,10 +9,8 @@ local M = {}
 -- * root pattern of cwd
 ---@return string
 function M.get_root()
-  ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
-  ---@type string[]
   local roots = {}
   if path then
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
@@ -31,11 +29,10 @@ function M.get_root()
   table.sort(roots, function(a, b)
     return #a > #b
   end)
-  ---@type string?
   local root = roots[1]
   if not root then
     path = path and vim.fs.dirname(path) or vim.loop.cwd()
-    ---@type string?
+
     root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
     root = root and vim.fs.dirname(root) or vim.loop.cwd()
   end
@@ -53,7 +50,6 @@ function M.conditional_func(func, condition, ...)
 end
 
 function M.fg(name)
-  ---@type {foreground?:number}?
   local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name }) or vim.api.nvim_get_hl_by_name(name, true)
   local fg = hl and hl.fg or hl.foreground
   return fg and { fg = string.format("#%06x", fg) }
