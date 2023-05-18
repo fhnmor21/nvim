@@ -30,4 +30,7 @@ return {
 
   -- session management
   require("plugins.editor.persistence"),
+
+  -- vim be good - game to practice vim movements
+  -- {"ThePrimeagen/vim-be-good"}
 }
