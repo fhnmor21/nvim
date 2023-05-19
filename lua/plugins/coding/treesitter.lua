@@ -24,6 +24,12 @@ return {
         end
       end,
     },
+    {
+      "nvim-treesitter/playground",
+      keys = {
+        { "<leader>ct", "<CMD>TSPlaygroundToggle<CR>", desc = "Toggle TreeSitter Playground" },
+      },
+    },
   },
   keys = {
     { "<c-space>", desc = "Increment selection" },
