@@ -64,6 +64,7 @@ local M = {
       Variable = " ",
     },
     ui = {
+      Arrow = "",
       ArrowClosed = "",
       ArrowOpen = "",
       Lock = "",

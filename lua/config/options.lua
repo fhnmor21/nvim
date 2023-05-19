@@ -7,7 +7,7 @@ local opts = {
   cmdheight = 0,                                               -- hide command line unless needed
   completeopt = { "menuone", "noselect" },                     -- Options for insert mode completion
   cursorline = true,                                           -- Highlight the text line of the cursor
-  conceallevel = 0,                                            -- so that `` is visible in markdown files
+  conceallevel = 2,                                            -- so that `` is visible in markdown files
   expandtab = true,                                            -- Enable the use of space in tab
   fileencoding = "utf-8",                                      -- File content encoding for the buffer
   fillchars = { eob = " " },                                   -- Disable `~` on nonexistent lines
