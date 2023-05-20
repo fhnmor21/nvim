@@ -12,7 +12,7 @@ return {
   require("plugins.ui.lualine"),
 
   -- indent guides for Neovim
-  require("plugins.ui.indent_blankline"),
+  require("plugins.ui.indent-blankline"),
 
   -- lsp symbol navigation for lualine
   -- require("plugins.ui.navic"),

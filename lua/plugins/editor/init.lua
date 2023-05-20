@@ -5,6 +5,9 @@ return {
   -- file explorer
   require("plugins.editor.neotree"),
 
+  -- in buffer file explorer
+  require("plugins.editor.oil"),
+
   -- which-key
   require("plugins.editor.whichkey"),
 
@@ -13,7 +16,6 @@ return {
 
   -- magic search within the buffer
   require("plugins.editor.flit"),
-
   require("plugins.editor.leap"),
 
   -- multi selection
@@ -26,7 +28,7 @@ return {
   require("plugins.editor.trouble"),
 
   -- buffer remove
-  require("plugins.editor.buffer_remove"),
+  require("plugins.editor.buffer-remove"),
 
   -- session management
   require("plugins.editor.persistence"),

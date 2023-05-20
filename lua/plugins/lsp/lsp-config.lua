@@ -13,7 +13,7 @@ return {
     {
       "hrsh7th/cmp-nvim-lsp",
       cond = function()
-        return require("config.func_utils").has("nvim-cmp")
+        return require("config.func-utils").has("nvim-cmp")
       end,
     },
     "ray-x/lsp_signature.nvim",
@@ -49,7 +49,7 @@ return {
     require("plugins.lsp.format").autoformat = opts.autoformat
 
     -- setup formatting and keymaps
-    local Util = require("config.func_utils")
+    local Util = require("config.func-utils")
     Util.on_attach(function(client, buffer)
       require("plugins.lsp.format").on_attach(client, buffer)
       require("plugins.lsp.keymaps").on_attach(client, buffer)

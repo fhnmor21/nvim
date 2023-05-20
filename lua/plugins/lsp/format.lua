@@ -35,7 +35,7 @@ function M.format(opts)
       end
       return client.name ~= "null-ls"
     end,
-  }, require("config.func_utils").opts("nvim-lspconfig").format or {}))
+  }, require("config.func-utils").opts("nvim-lspconfig").format or {}))
 end
 
 function M.on_attach(client, buf)

@@ -9,13 +9,13 @@ return {
   require("plugins.coding.cmp"),
 
   -- auto pair brackets
-  require("plugins.coding.auto_pairs"),
+  require("plugins.coding.auto-pairs"),
 
   -- adding/removing surroundings
   require("plugins.coding.surround"),
 
   -- git
-  require("plugins.coding.git_signs"),
+  require("plugins.coding.git-signs"),
   -- require("plugins.coding.fugitive"),
 
   -- code refactoring

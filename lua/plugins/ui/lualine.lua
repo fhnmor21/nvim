@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = function()
     local icons = require("config.data").icons
-    local Util = require("config.func_utils")
+    local Util = require("config.func-utils")
 
     return {
       options = {
@@ -81,4 +81,3 @@ return {
     }
   end,
 }
-
