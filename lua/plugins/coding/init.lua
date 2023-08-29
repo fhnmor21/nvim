@@ -25,7 +25,7 @@ return {
   require("plugins.coding.comment"),
 
   -- c++ tools
-  require("plugins.coding.nt-cpp-tools"),
+  -- require("plugins.coding.nt-cpp-tools"),
 
   -- code action menu
   require("plugins.coding.action-menu")
