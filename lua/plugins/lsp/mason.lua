@@ -1,4 +1,3 @@
-local Util = require("config.func-utils")
 return {
   "williamboman/mason.nvim",
   cmd = "Mason",
