@@ -1,4 +1,3 @@
-local Util = require("config.func-utils")
 return {
   "williamboman/mason.nvim",
   cmd = "Mason",
@@ -23,19 +22,17 @@ return {
       end,
       ["lua_ls"] = function()
         require("lspconfig").lua_ls.setup({
-          settings = {
-            -- custom settings for lua
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                -- make language server aware of runtime files
-                library = {
-                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                  [vim.fn.stdpath("config") .. "/lua"] = true,
-                },
+          -- custom settings for lua
+          Lua = {
+            -- make the language server recognize "vim" global
+            diagnostics = {
+              globals = { "vim" },
+            },
+            workspace = {
+              -- make language server aware of runtime files
+              library = {
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.stdpath("config") .. "/lua"] = true,
               },
             },
           },
