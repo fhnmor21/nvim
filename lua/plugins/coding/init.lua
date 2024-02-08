@@ -16,7 +16,7 @@ return {
 
   -- git
   require("plugins.coding.git-signs"),
-  -- require("plugins.coding.fugitive"),
+  require("plugins.coding.fugitive"),
 
   -- code refactoring
   -- require("plugins.coding.refactoring"),

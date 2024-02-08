@@ -6,7 +6,7 @@ return {
   require("plugins.editor.neotree"),
 
   -- in buffer file explorer
-  require("plugins.editor.oil"),
+  -- require("plugins.editor.oil"),
 
   -- which-key
   require("plugins.editor.whichkey"),

@@ -17,7 +17,7 @@ return {
       end,
     },
     "ray-x/lsp_signature.nvim",
-    "glepnir/lspsaga.nvim",
+    -- "glepnir/lspsaga.nvim",
   },
   opts = {
     -- options for vim.diagnostic.config()
@@ -44,16 +44,39 @@ return {
       timeout_ms = nil,
     },
   },
+
   config = function(_, opts)
     -- setup autoformat
     require("plugins.lsp.format").autoformat = opts.autoformat
 
-    -- setup formatting and keymaps
+    -- setup formatting
     local Util = require("config.func-utils")
-    Util.on_attach(function(client, buffer)
-      require("plugins.lsp.format").on_attach(client, buffer)
-      require("plugins.lsp.keymaps").on_attach(client, buffer)
-    end)
+    Util.on_attach(
+      function(client, buffer)
+        require("plugins.lsp.format").on_attach(client, buffer)
+
+        local new_opts = { buffer = buffer, silent = true, has = nil }
+        new_opts.desc = "Line Diagnostics"
+        vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, new_opts)
+        new_opts.desc = "LspInfo"
+        vim.keymap.set('n', '<leader>cl', '<cmd>LspInfo<cr>', new_opts)
+        new_opts.desc = "References"
+        vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', new_opts)
+        new_opts.desc = "Go To Declaration"
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, new_opts)
+        new_opts.desc = "Go To Implementation"
+        vim.keymap.set('n', 'gI', '<cmd>Telescope lsp_implementations<cr>', new_opts)
+        new_opts.desc = "Go To Type Definition"
+        vim.keymap.set('n', 'gy', '<cmd>Telescope lsp_type_definitions<cr>', new_opts)
+        -- new_opts.desc = "Hover"
+        -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, new_opts)
+        new_opts.desc = "Go To Definition"
+        --        new_opts.has = "definition"
+        vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', new_opts)
+        new_opts.desc = "Signature Help"
+        --        new_opts.has = "signatureHelp"
+        vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, new_opts)
+      end)
 
     -- diagnostics icons
     for name, icon in pairs(require("config.data").icons.diagnostics) do
@@ -84,13 +107,13 @@ return {
       hint_prefix = data.icons.misc.Squirrel .. "  ",
     })
 
-    require("lspsaga").setup({
-      -- keybinds for navigation in lspsaga window
-      scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
-      -- use enter to open file with definition preview
-      definition = {
-        edit = "<CR>",
-      },
-    })
+    --require("lspsaga").setup({
+    --  -- keybinds for navigation in lspsaga window
+    --  scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
+    --  -- use enter to open file with definition preview
+    --  definition = {
+    --    edit = "<CR>",
+    --  },
+    --})
   end,
 }
