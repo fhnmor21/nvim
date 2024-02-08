@@ -48,11 +48,11 @@ if Util.has("bufferline.nvim") then
   map("n", "<leader>b>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
   map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
   map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-  map("n", "<leader>br", "<cmd>BufferLineCloseRight<cr>", { desc = "Close all buffers to the right" })
-  map("n", "<leader>bl", "<cmd>BufferLineCloseLeft<cr>", { desc = "Close all buffers to the left" })
-  map("n", "<leader>bc",
-    "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
-    { desc = "Close all buffers except current" })
+  --  map("n", "<leader>br", "<cmd>BufferLineCloseRight<cr>", { desc = "Close all buffers to the right" })
+  --  map("n", "<leader>bl", "<cmd>BufferLineCloseLeft<cr>", { desc = "Close all buffers to the left" })
+  --  map("n", "<leader>bc",
+  --    "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
+  --    { desc = "Close all buffers except current" })
 else
   map("n", "<C-t>h", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
   map("n", "<C-t>h", "<cmd>bnext<cr>", { desc = "Next buffer" })

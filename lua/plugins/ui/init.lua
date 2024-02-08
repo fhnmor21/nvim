@@ -6,7 +6,7 @@ return {
   require("plugins.ui.dressing"),
 
   -- bufferline
-  require("plugins.ui.bufferline"),
+  --  require("plugins.ui.bufferline"),
 
   -- statusline
   require("plugins.ui.lualine"),
