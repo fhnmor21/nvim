@@ -11,4 +11,7 @@ return {
    -- file explorer
    require("plugins.ui.neotree"),
 
+     -- statusline
+  require("plugins.ui.lualine"),
+
 }
