@@ -68,10 +68,8 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
-map("n", "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
   { desc = "Redraw / clear hlsearch / diff update" })
-
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -93,8 +91,8 @@ map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-map("v", "<Tab>", "<gv")
-map("v", "S-<Tab>", ">gv")
+map("v", "<tab>", ">gv")
+map("v", "S-<Tab>", "<gv")
 
 -- lazy
 map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
