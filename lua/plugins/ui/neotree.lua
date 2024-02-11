@@ -17,7 +17,7 @@ return {
     "MunifTanjim/nui.nvim",
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
---[[
+  --[[
   init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
     if vim.fn.argc() == 1 then
@@ -58,5 +58,5 @@ return {
       end,
     })
   end,
-]]--
+  ]]--
 }

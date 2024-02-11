@@ -6,7 +6,6 @@ return {
     vim.o.timeoutlen = 300
   end,
   opts = {
-    --[[
     plugins = { spelling = true },
     defaults = {
       mode = { "n", "v" },
@@ -26,7 +25,6 @@ return {
       ["<leader>w"] = { name = "+windows" },
       ["<leader>x"] = { name = "+diagnostics/quickfix" },
     },
-    ]]--
   },
   --[[
   config = function(_, opts)
