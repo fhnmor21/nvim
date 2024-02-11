@@ -10,5 +10,5 @@ end
 -- require
 require("config.options")
 require("config.lazy_plugins")
---require("config.keymaps")
+require("config.global_keymaps")
 --require("config.autocmds")
