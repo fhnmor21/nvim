@@ -5,22 +5,18 @@ return {
   -- fuzzy finder
   require("plugins.editor.telescope"),
 
-  --[[
-  -- in buffer file explorer
-  -- require("plugins.editor.oil"),
-
-  -- search/replace in multiple files
-  require("plugins.editor.spectre"),
-
-  -- magic search within the buffer
-  require("plugins.editor.flit"),
-  require("plugins.editor.leap"),
-
-  -- multi selection
-  require("plugins.editor.multi-select"),
+  -- magic jump within the buffer
+  require("plugins.editor.jump"),
 
   -- references
   require("plugins.editor.illuminate"),
+
+    -- search/replace in multiple files
+    require("plugins.editor.spectre"),
+
+  --[[
+  -- in buffer file explorer
+  -- require("plugins.editor.oil"),
 
   -- buffer remove
   require("plugins.editor.buffer-remove"),
@@ -31,6 +27,11 @@ return {
   -- vim be good - game to practice vim movements
   -- {"ThePrimeagen/vim-be-good",},
   ]]--
+
+    -- cursor multi-select
+    {
+      'mg979/vim-visual-multi',
+    },
 
     -- fidget
     {"j-hui/fidget.nvim",},
