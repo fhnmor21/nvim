@@ -4,7 +4,7 @@ return {
 
   -- fuzzy finder
   require("plugins.editor.telescope"),
-  
+
   --[[
   -- in buffer file explorer
   -- require("plugins.editor.oil"),
@@ -32,6 +32,9 @@ return {
   require("plugins.editor.persistence"),
 
   -- vim be good - game to practice vim movements
-  -- {"ThePrimeagen/vim-be-good"}
+  -- {"ThePrimeagen/vim-be-good",},
   ]]--
+
+    -- fidget
+    {"j-hui/fidget.nvim",},
 }

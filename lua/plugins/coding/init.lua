@@ -1,7 +1,11 @@
 return {
   -- syntax highlight
   require("plugins.coding.treesitter"),
---[[
+
+  -- LSP
+  require("plugins.coding.lsp-config"),
+
+  --[[
   -- code snippets
   require("plugins.coding.snippets"),
 
