@@ -1,5 +1,5 @@
 local M = {
-  icons = {
+  symbols = {
     dap = {
       Stopped = { " ", "DiagnosticWarn", "DapStoppedLine" },
       Breakpoint = " ",
