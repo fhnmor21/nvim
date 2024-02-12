@@ -4,7 +4,7 @@ return {
     {
       "williamboman/mason.nvim",
       cmd = "Mason",
-      build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+      -- build = ":MasonUpdates", -- :MasonUpdate updates registry contents
       keys = {
         { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" }
       },

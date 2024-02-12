@@ -79,7 +79,7 @@ return {
         configs.setup(refactor)
       end,
     },
-  ]]--
+    ]]--
   },
 
   opts = {
