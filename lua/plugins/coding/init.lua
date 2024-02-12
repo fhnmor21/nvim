@@ -5,6 +5,9 @@ return {
   -- LSP
   require("plugins.coding.lsp-config"),
 
+  -- better diagnostics list and others
+  require("plugins.coding.trouble"),
+  
   --[[
   -- code snippets
   require("plugins.coding.snippets"),

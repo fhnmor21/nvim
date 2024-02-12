@@ -3,8 +3,14 @@ return {
   build = ":TSUpdate",
   -- version = false, -- last release is way too old and doesn't work on Windows
   -- event = { "BufReadPost", "BufNewFile" },
-  --[[
   dependencies = {
+    {
+      "nvim-treesitter/playground",
+      keys = {
+        { "<leader>ct", "<CMD>TSPlaygroundToggle<CR>", desc = "Toggle TreeSitter Playground" },
+      },
+    },
+    --[[
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       init = function()
@@ -73,14 +79,8 @@ return {
         configs.setup(refactor)
       end,
     },
-    {
-      "nvim-treesitter/playground",
-      keys = {
-        { "<leader>ct", "<CMD>TSPlaygroundToggle<CR>", desc = "Toggle TreeSitter Playground" },
-      },
-    },
-  },
   ]]--
+  },
 
   opts = {
     sync_install = false,
@@ -102,12 +102,6 @@ return {
       "regex",
       "yaml",
     },
-    --[[
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { "BufWrite", "CursorHold" },
-    },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -116,6 +110,12 @@ return {
         scope_incremental = "grc",
         node_decremental = "grm",
       },
+    },
+    --[[
+    query_linter = {
+      enable = true,
+      use_virtual_text = true,
+      lint_events = { "BufWrite", "CursorHold" },
     },
     ]]--
   },

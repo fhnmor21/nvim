@@ -9,7 +9,7 @@ return {
   require("plugins.ui.colortheme"),
 
    -- file explorer
-   require("plugins.ui.neotree"),
+  require("plugins.ui.neotree"),
 
      -- statusline
   require("plugins.ui.lualine"),

@@ -22,9 +22,6 @@ return {
   -- references
   require("plugins.editor.illuminate"),
 
-  -- better diagnostics list and others
-  require("plugins.editor.trouble"),
-
   -- buffer remove
   require("plugins.editor.buffer-remove"),
 

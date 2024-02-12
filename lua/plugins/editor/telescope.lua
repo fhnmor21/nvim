@@ -30,7 +30,7 @@ return {
       { "<leader>:",       "<cmd>Telescope command_history<cr>",               desc = "Command History" },
       { "<leader><space>", "<cmd>Telescope find_files<cr>",                    desc = "Find Files" },
       -- find
-      { "<leader>fb",      "<cmd>Telescope buffers<cr>",                       desc = "Buffers" },
+      { "<leader>bt",      "<cmd>Telescope buffers<cr>",                       desc = "Buffers" },
       { "<leader>ff",      "<cmd>Telescope find_files<cr>",                    desc = "Find Files" },
       --- { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>fr",      "<cmd>Telescope oldfiles<cr>",                      desc = "Recent" },
@@ -159,7 +159,7 @@ return {
             require("telescope.themes").get_dropdown {
               -- even more opts
             }
-      
+
             -- pseudo code / specification for writing custom displays, like the one
             -- for "codeactions"
             -- specific_opts = {
