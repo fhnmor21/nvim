@@ -7,22 +7,19 @@ return {
 
   -- better diagnostics list and others
   require("plugins.coding.trouble"),
-  
-  --[[
-  -- code snippets
-  require("plugins.coding.snippets"),
 
   -- auto completion
   require("plugins.coding.cmp"),
 
+  -- git
+  require("plugins.coding.git"),
+  --[[
   -- auto pair brackets
   require("plugins.coding.auto-pairs"),
 
   -- adding/removing surroundings
   require("plugins.coding.surround"),
 
-  -- git
-  require("plugins.coding.git-signs"),
   require("plugins.coding.fugitive"),
 
   -- code refactoring
