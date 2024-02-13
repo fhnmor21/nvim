@@ -150,6 +150,7 @@ return {
       -- Util.conditional_func(telescope.load_extension, Util.has("telescope-fzf-native.nvim"), "fzf")
     end,
   },
+--[[
   {
     "nvim-telescope/telescope-ui-select.nvim",
     config = function(_, opts)
@@ -181,4 +182,5 @@ return {
       require("telescope").load_extension("ui-select")
     end
   },
+]]--
 }
