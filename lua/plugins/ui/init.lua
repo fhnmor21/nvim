@@ -14,4 +14,10 @@ return {
      -- statusline
   require("plugins.ui.lualine"),
 
+  -- better vim.ui
+  require("plugins.ui.dressing"),
+
+  -- rainbow indent guides and delimeters
+  require("plugins.ui.rainbow"),
+
 }
