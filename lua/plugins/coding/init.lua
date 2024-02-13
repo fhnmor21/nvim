@@ -13,14 +13,16 @@ return {
 
   -- git
   require("plugins.coding.git"),
+
+  -- debug
+  require("plugins.coding.dap")
+
   --[[
   -- auto pair brackets
   require("plugins.coding.auto-pairs"),
 
   -- adding/removing surroundings
   require("plugins.coding.surround"),
-
-  require("plugins.coding.fugitive"),
 
   -- code refactoring
   -- require("plugins.coding.refactoring"),
@@ -33,8 +35,5 @@ return {
 
   -- code action menu
   require("plugins.coding.action-menu")
-
-  -- code navigator
-  --  require("plugins.coding.code-navigator"),
 ]]--
 }
