@@ -143,7 +143,7 @@ return {
         opts.desc = "Find References"
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
         opts.desc = "Format"
-        vim.keymap.set("n", "<leader>f", function()
+        vim.keymap.set("n", "<leader>cF", function()
                           vim.lsp.buf.format { async = true }
                         end, opts)
         opts.desc = "LspInfo"
