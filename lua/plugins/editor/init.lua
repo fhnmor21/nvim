@@ -11,8 +11,12 @@ return {
   -- references
   require("plugins.editor.illuminate"),
 
-    -- search/replace in multiple files
-    require("plugins.editor.spectre"),
+  -- search/replace in multiple files
+  require("plugins.editor.spectre"),
+
+  -- search/replace in multiple files
+  require("plugins.editor.auto-pairs"),
+
 
   --[[
   -- in buffer file explorer
@@ -26,13 +30,20 @@ return {
 
   -- vim be good - game to practice vim movements
   -- {"ThePrimeagen/vim-be-good",},
-  ]]--
+  ]] --
 
-    -- cursor multi-select
-    {
-      'mg979/vim-visual-multi',
-    },
+  -- cursor multi-select
+  {
+    'mg979/vim-visual-multi',
+  },
 
-    -- fidget
-    {"j-hui/fidget.nvim",},
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require('Comment').setup()
+    end
+  },
+
+  -- fidget
+  { "j-hui/fidget.nvim", },
 }
