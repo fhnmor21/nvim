@@ -1,2 +1,2 @@
-- add support for debug
-    - dap
+- autopair
+- tidy/clean up all keymaps (seems to have some colisions happening)
