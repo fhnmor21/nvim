@@ -1,2 +1,4 @@
-- autopair
+- install lspkind
+- install nvim notify
+- install nvim comment
 - tidy/clean up all keymaps (seems to have some colisions happening)

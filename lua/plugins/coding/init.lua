@@ -20,9 +20,10 @@ return {
   -- folding
   require("plugins.coding.ufo"),
 
-  --[[
   -- adding/removing surroundings
   require("plugins.coding.surround"),
+
+  --[[
 
   -- code refactoring
   -- require("plugins.coding.refactoring"),
