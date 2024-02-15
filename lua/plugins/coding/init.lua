@@ -23,18 +23,18 @@ return {
   -- adding/removing surroundings
   require("plugins.coding.surround"),
 
+  -- code comment
+  require("plugins.coding.comment"),
   --[[
 
   -- code refactoring
   -- require("plugins.coding.refactoring"),
 
-  -- code comment
-  require("plugins.coding.comment"),
 
   -- c++ tools
   -- require("plugins.coding.nt-cpp-tools"),
 
   -- code action menu
   require("plugins.coding.action-menu")
-]]--
+]] --
 }
