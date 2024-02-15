@@ -17,10 +17,10 @@ return {
   -- debug
   require("plugins.coding.dap"),
 
-  --[[
-  -- auto pair brackets
-  require("plugins.coding.auto-pairs"),
+  -- folding
+  require("plugins.coding.ufo"),
 
+  --[[
   -- adding/removing surroundings
   require("plugins.coding.surround"),
 

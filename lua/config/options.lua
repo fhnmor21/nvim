@@ -31,6 +31,9 @@ local opts = {
   virtualedit = "block",                                       -- allow going past end of line in visual block mode
   wrap = false,                                                -- Disable wrapping of lines longer than the width of window
   writebackup = false,                                         -- Disable making a backup before overwriting a file
+  foldcolumn = '1', -- '0' is not bad
+  foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+  foldlevelstart = 99,
 }
 
 vim.opt.shortmess:append("c")
