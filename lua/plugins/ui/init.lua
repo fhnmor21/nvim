@@ -8,10 +8,10 @@ return {
   -- the colorscheme should be available when starting Neovim
   require("plugins.ui.colortheme"),
 
-   -- file explorer
+  -- file explorer
   require("plugins.ui.neotree"),
 
-     -- statusline
+  -- statusline
   require("plugins.ui.lualine"),
 
   -- better vim.ui
@@ -20,4 +20,6 @@ return {
   -- rainbow indent guides and delimeters
   require("plugins.ui.rainbow"),
 
+  -- visual notifications
+  require("plugins.ui.notify"),
 }
