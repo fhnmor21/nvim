@@ -22,17 +22,17 @@ return {
       "lewis6991/hover.nvim",
       config = function()
         require("hover").setup {
-            init = function()
-                -- Require providers
-                require("hover.providers.lsp")
-            end,
-            preview_opts = {
-                border = "single"
-            },
-            -- Whether the contents of a currently open hover window should be moved
-            -- to a :h preview-window when pressing the hover keymap.
-            preview_window = false,
-            title = true,
+          init = function()
+            -- Require providers
+            require("hover.providers.lsp")
+          end,
+          preview_opts = {
+            border = "single"
+          },
+          -- Whether the contents of a currently open hover window should be moved
+          -- to a :h preview-window when pressing the hover keymap.
+          preview_window = false,
+          title = true,
         }
       end
     },
@@ -55,7 +55,7 @@ return {
       end
     },
     -- auto completion using lsp
-    {"hrsh7th/cmp-nvim-lsp",},
+    { "hrsh7th/cmp-nvim-lsp", },
     -- {
     --   "ray-x/navigator.lua",
     --   dependencies = {
@@ -77,6 +77,7 @@ return {
     require("mason").setup(opts)
     require("mason-lspconfig").setup()
     require("mason-lspconfig").setup_handlers({
+
       -- general handler for languages we do not have a specific setup
       function(server_name)
         require("lspconfig")[server_name].setup({
@@ -144,8 +145,8 @@ return {
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
         opts.desc = "Format"
         vim.keymap.set("n", "<leader>cF", function()
-                          vim.lsp.buf.format { async = true }
-                        end, opts)
+          vim.lsp.buf.format { async = true }
+        end, opts)
         opts.desc = "LspInfo"
         vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
         opts.desc = "Hover"
@@ -173,12 +174,12 @@ return {
     })
 
     require("lspsaga").setup({
-     -- keybinds for navigation in lspsaga window
-     -- scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
-     -- use enter to open file with definition preview
-    --  definition = {
-    --    edit = "<CR>",
-    --  },
+      -- keybinds for navigation in lspsaga window
+      -- scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
+      -- use enter to open file with definition preview
+      --  definition = {
+      --    edit = "<CR>",
+      --  },
     })
   end
 }
