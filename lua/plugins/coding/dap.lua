@@ -30,6 +30,16 @@ return {
       vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Toggle Breakpoint" })
       vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
     end,
-
-  }
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    lazy = true,
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    config = function()
+      require("mason-nvim-dap").setup()
+    end,
+  },
 }

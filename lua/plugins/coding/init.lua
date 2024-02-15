@@ -15,7 +15,7 @@ return {
   require("plugins.coding.git"),
 
   -- debug
-  require("plugins.coding.dap")
+  require("plugins.coding.dap"),
 
   --[[
   -- auto pair brackets
