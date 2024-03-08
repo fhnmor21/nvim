@@ -27,7 +27,10 @@ return {
   require("plugins.coding.comment"),
 
   -- obsidian vault editor
-  require("plugins.coding.obsidian")
+  require("plugins.coding.obsidian"),
+
+  -- allow editing and integrate org mode files 
+  require("plugins.coding.orgmode"),
 
   --[[
 
