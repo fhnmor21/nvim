@@ -25,6 +25,10 @@ return {
 
   -- code comment
   require("plugins.coding.comment"),
+
+  -- obsidian vault editor
+  require("plugins.coding.obsidian")
+
   --[[
 
   -- code refactoring
