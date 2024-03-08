@@ -19,8 +19,8 @@ return {
 
       -- Setup orgmode
       require("orgmode").setup({
-        org_agenda_files = "~/orgfiles/**/*",
-        org_default_notes_file = "~/orgfiles/refile.org",
+        org_agenda_files = "~/Vaults/Org/**/*",
+        org_default_notes_file = "~/Vaults/Org/refile.org",
 
       })
     end,
