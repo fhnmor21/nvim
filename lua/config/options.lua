@@ -3,6 +3,7 @@ local opts = {
   backspace = "indent,eol,start",                              -- allow backspace on indent, end of line or insert mode start position
   clipboard = "unnamedplus",                                   -- Connection to the system clipboard
   cmdheight = 0,                                               -- hide command line unless needed
+  conceallevel = 1,
   cursorline = true,                                           -- Highlight the text line of the cursor
   expandtab = true,                                            -- Enable the use of space in tab
   fileencoding = "utf-8",                                      -- File content encoding for the buffer
