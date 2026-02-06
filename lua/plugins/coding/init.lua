@@ -30,7 +30,7 @@ return {
   require("plugins.coding.obsidian"),
 
   -- allow editing and integrate org mode files 
-  require("plugins.coding.orgmode"),
+  -- require("plugins.coding.orgmode"),
 
   --[[
 
