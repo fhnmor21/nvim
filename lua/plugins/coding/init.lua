@@ -18,7 +18,7 @@ return {
   require("plugins.coding.dap"),
 
   -- folding
-  require("plugins.coding.ufo"),
+  -- require("plugins.coding.ufo"),
 
   -- adding/removing surroundings
   require("plugins.coding.surround"),
@@ -29,19 +29,20 @@ return {
   -- obsidian vault editor
   require("plugins.coding.obsidian"),
 
-  -- allow editing and integrate org mode files 
-  -- require("plugins.coding.orgmode"),
+--[[
 
-  --[[
+  -- allow editing and integrate org mode files
+  -- require("plugins.coding.orgmode"),
 
   -- code refactoring
   -- require("plugins.coding.refactoring"),
-
 
   -- c++ tools
   -- require("plugins.coding.nt-cpp-tools"),
 
   -- code action menu
-  require("plugins.coding.action-menu")
-]] --
+  -- require("plugins.coding.action-menu")
+
+]]--
+
 }

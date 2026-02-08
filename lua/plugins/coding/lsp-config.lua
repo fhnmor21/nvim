@@ -76,6 +76,7 @@ return {
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     require("mason").setup(opts)
     require("mason-lspconfig").setup()
+--[[
     require("mason-lspconfig").setup_handlers({
 
       -- general handler for languages we do not have a specific setup
@@ -106,6 +107,8 @@ return {
         })
       end
     })
+--]]
+
     require("mason-null-ls").setup({
       automatic_setup = true,
     })

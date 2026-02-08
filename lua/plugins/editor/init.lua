@@ -17,8 +17,24 @@ return {
   -- search/replace in multiple files
   require("plugins.editor.auto-pairs"),
 
+  -- cursor multi-select
+  {
+    'mg979/vim-visual-multi',
+  },
 
-  --[[
+  -- comment source code
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require('Comment').setup()
+    end
+  },
+
+  -- fidget
+  { "j-hui/fidget.nvim", },
+
+--[[
+
   -- in buffer file explorer
   -- require("plugins.editor.oil"),
 
@@ -30,20 +46,7 @@ return {
 
   -- vim be good - game to practice vim movements
   -- {"ThePrimeagen/vim-be-good",},
-  ]] --
 
-  -- cursor multi-select
-  {
-    'mg979/vim-visual-multi',
-  },
+]]--
 
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require('Comment').setup()
-    end
-  },
-
-  -- fidget
-  { "j-hui/fidget.nvim", },
 }
