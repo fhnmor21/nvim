@@ -29,6 +29,8 @@ return {
   -- obsidian vault editor
   require("plugins.coding.obsidian"),
 
+  require("plugins.coding.ai"),
+  
   -- markdown
   {
     'MeanderingProgrammer/render-markdown.nvim',
