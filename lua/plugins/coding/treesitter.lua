@@ -3,6 +3,7 @@ return {
   build = ":TSUpdate",
   -- version = false, -- last release is way too old and doesn't work on Windows
   -- event = { "BufReadPost", "BufNewFile" },
+    --[[
   dependencies = {
     {
       "nvim-treesitter/playground",
@@ -10,7 +11,6 @@ return {
         { "<leader>ct", "<CMD>TSPlaygroundToggle<CR>", desc = "Toggle TreeSitter Playground" },
       },
     },
-    --[[
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
       init = function()
@@ -79,8 +79,8 @@ return {
         configs.setup(refactor)
       end,
     },
-    ]]--
   },
+    ]]--
 
   opts = {
     sync_install = false,

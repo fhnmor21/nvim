@@ -42,6 +42,9 @@ return {
     opts = {},
   },
 
+  -- Unreal support
+  require("plugins.coding.unreal"),
+
 --[[
 
   -- allow editing and integrate org mode files
