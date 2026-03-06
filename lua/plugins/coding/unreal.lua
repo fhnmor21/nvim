@@ -15,14 +15,59 @@ return {
       "taku25/UNL.nvim",
       lazy = false,
       build = "cargo build --release --manifest-path scanner/Cargo.toml",
+      opts = {
+        -- Configuration for UI backends
+        ui = {
+          picker = {
+            mode = "auto", -- "auto", "telescope", "fzf_lua", "native"
+            prefer = { "telescope", "fzf_lua", "native" },
+          },
+          filer = {
+            mode = "auto",
+            prefer = { "neo-tree", "nvim-tree", "native" },
+          },
+          progress = {
+            enable = true,
+            mode = "auto", -- "auto", "fidget", "window", "notify"
+            prefer = { "fidget", "window", "notify" },
+          },
+        },
+
+        -- Configuration for logging
+        logging = {
+          level = "info", -- Global base log level (trace, debug, info, warn, error)
+          echo = { level = "warn" }, -- Minimum level to display with :echo
+          notify = { level = "error", prefix = "[UNL]" }, -- Minimum level and prefix for vim.notify
+          file = { enable = true, max_kb = 512, rotate = 3, filename = "unl.log" }, -- File log settings
+        },
+
+        -- Configuration for the cache directory
+        cache = {
+          -- The directory name where this library and related plugins
+          -- will store cache files, i.e., <nvim_cache_dir>/<dirname>
+          dirname = "UNL_cache",
+        },
+
+        -- Configuration for project searching
+        project = {
+          -- The filename for project-local settings
+          localrc_filename = ".unlrc.json",
+          -- If true, the search will not go above the home directory
+          search_stop_at_home = true,
+        },
+      },
     }, -- Required
     {
       "taku25/UEP.nvim",
+      dependencies = {
+        "taku25/UNL.nvim",
+        "nvim-telescope/telescope.nvim", -- Optional
+      },
     },
     {
       "taku25/UNX.nvim",
       keys = {
-        {"<leader>cu", "<cmd>UNX toggle<cr>", desc="Toggle Unreal Tree"},
+        { "<leader>ux", "<cmd>UNX toggle<cr>", desc = "Toggle Unreal Explorer" },
       },
       dependencies = {
         "taku25/UNL.nvim",
@@ -32,24 +77,10 @@ return {
         "taku25/UCM.nvim", -- Recommended for file manipulation actions
         "taku25/ULG.nvim", -- Recommended for using Insights features
 
-        {
-          "nvim-treesitter/nvim-treesitter",
-          branch = "main",
-          lazy = false,
-          build = ":TSUpdate",
-          dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-          },
-          config = function(_, opts)
-            -- Configure custom parsers for Unreal C++ and Shaders
-            -- (See UEP.nvim or README for detailed parser setup)
-            require("nvim-treesitter.configs").setup(opts)
-          end,
-        },
       },
       opts = {
         window = {
-          position = "left", -- "left" or "right"
+          position = "right", -- "left" or "right"
           size = {
             width = 35,
           },
@@ -102,6 +133,12 @@ return {
         },
       },
     },
+    {
+      "taku25/neo-tree-unl.nvim",
+      dependencies = {
+        "taku25/UNL.nvim",
+      },
+    },
     "taku25/UBT.nvim",
     "taku25/UCM.nvim",
     "taku25/USH.nvim",
@@ -111,41 +148,6 @@ return {
 
     -- Syntax and Parsers
     { "taku25/USX.nvim", lazy = false }, -- Syntax highlighting
-    {
-      "nvim-treesitter/nvim-treesitter",
-      branch = "main",
-      config = function(_, opts)
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "TSUpdate",
-          callback = function()
-            local parsers = require("nvim-treesitter.parsers")
-            parsers.cpp = {
-              install_info = {
-                url = "https://github.com/taku25/tree-sitter-unreal-cpp",
-                revision = "67198f1b35e052c6dbd587492ad53168d18a19a8",
-              },
-            }
-            parsers.ushader = {
-              install_info = {
-                url = "https://github.com/taku25/tree-sitter-unreal-shader",
-                revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
-              },
-            }
-          end,
-        })
-        local langs = { "c", "cpp", "ushader", "json" }
-        require("nvim-treesitter").install(langs)
-        local group = vim.api.nvim_create_augroup("MyTreesitter", { clear = true })
-        vim.api.nvim_create_autocmd("FileType", {
-          group = group,
-          pattern = langs,
-          callback = function(args)
-            vim.treesitter.start(args.buf)
-            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end,
-        })
-      end,
-    },
   },
   config = function()
     require("UnrealDev").setup({})
@@ -163,8 +165,6 @@ return {
 
       -- Other USH options...
     })
-    -- Individual plugin settings can be configured here
-    -- require('uep').setup { ... }
-    -- require('ubt').setup { ... }
+
   end,
 }
