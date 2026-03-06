@@ -27,7 +27,7 @@ return {
         { "<leader>gh", group = "hunks" },
         { "<leader>q", group = "quit/session" },
         { "<leader>s", group = "search" },
-        { "<leader>u", group = "ui" },
+        { "<leader>u", group = "ui/unreal" },
         { "<leader>w", group = "windows" },
         { "<leader>x", group = "diagnostics/quickfix" },
       })
