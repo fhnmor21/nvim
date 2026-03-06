@@ -10,37 +10,67 @@ return {
     parsers = {
       "bash", "json", "lua", "luadoc", "luap", "markdown",
       "markdown_inline", "python", "regex", "yaml",
-      "cpp"
+      "unreal_cpp", "ushader"
     },
   },
+
   config = function(_, opts)
   local ts = require("nvim-treesitter")
-  local parsers = require("nvim-treesitter.parsers")
 
-  -- 1. Register custom Unreal C++ Parser
-  parsers.cpp = {
-    install_info = {
-      url = "https://github.com/taku25/tree-sitter-unreal-cpp",
-      revision = "67198f1b35e052c6dbd587492ad53168d18a19a8",
-      files = { "src/parser.c", "src/scanner.cc" },
-    },
-    filetype = "cpp",
-  }
+  -- add the extra parsers
+  vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
+    callback = function()
 
-  -- 2. Register custom Unreal Shader Parser
-  parsers.ushader = {
-    install_info = {
-      url = "https://github.com/taku25/tree-sitter-unreal-shader",
-      revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
-      files = { "src/parser.c", "src/scanner.cc" },
-    },
-    filetype = "ushader",
-  }
+      local parsers = require("nvim-treesitter.parsers")
 
-  -- 3. Install the parsers
+      -- Register custom Unreal C++ Parser
+      parsers.unreal_cpp = {
+        install_info = {
+          url = "https://github.com/taku25/tree-sitter-unreal-cpp",
+          revision = "4e4f8252d519db6d1a52a89e75d1d86ddeca515f",
+
+          location = 'parser', -- only needed if the parser is in subdirectory of a "monorepo"
+          generate = true, -- only needed if repo does not contain pre-generated `src/parser.c`
+          generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+          queries = 'queries/neovim', -- also install queries from given directory
+        },
+      }
+
+      -- Register custom Unreal Shader Parser
+      parsers.ushader = {
+        install_info = {
+          url = "https://github.com/taku25/tree-sitter-unreal-shader",
+          revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
+
+          location = 'parser', -- only needed if the parser is in subdirectory of a "monorepo"
+          generate = true, -- only needed if repo does not contain pre-generated `src/parser.c`
+          generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+          queries = 'queries/neovim', -- also install queries from given directory
+        },
+      }
+
+      vim.treesitter.language.register("unreal_cpp", {"cpp"})
+
+      -- Filetype Routing
+      vim.filetype.add({
+        extension = {
+          h = "unreal_cpp",
+          hpp = "unreal_cpp",
+          inl = "unreal_cpp",
+          usf = "ushader",
+          ush = "ushader",
+          uprojectshader = "ushader",
+        },
+      })
+
+      end
+
+    })
+
+  -- Install the parsers
   ts.install(opts.parsers)
 
-  -- 4. Enable highlighting and indentation manually (modern way)
+  -- Enable highlighting and indentation manually (modern way)
   -- This sets up an autocmd to start treesitter for your languages
   vim.api.nvim_create_autocmd("FileType", {
     pattern = opts.parsers,
@@ -51,18 +81,8 @@ return {
     end,
   })
 
-  -- 5. Filetype Routing
-  vim.filetype.add({
-    extension = {
-      h = "cpp",
-      hpp = "cpp",
-      inl = "cpp",
-      usf = "ushader",
-      ush = "ushader",
-      uprojectshader = "ushader",
-    },
-  })
   end,
+
 }
 
 --[[
