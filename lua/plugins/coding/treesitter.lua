@@ -1,9 +1,108 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  -- Crucial: Ensure you are on the 'main' branch if you want the latest features,
+  -- or 'master' if you want the old stable config. We'll stick to 'main' for this fix.
+  branch = "main",
   build = ":TSUpdate",
+  opts = {
+    -- The new API uses 'install' instead of 'ensure_installed'
+    -- but we can still pass a list here for the config function to use.
+    parsers = {
+      "bash", "json", "lua", "luadoc", "luap", "markdown",
+      "markdown_inline", "python", "regex", "yaml",
+      "cpp"
+    },
+  },
+  config = function(_, opts)
+  local ts = require("nvim-treesitter")
+  local parsers = require("nvim-treesitter.parsers")
+
+  -- 1. Register custom Unreal C++ Parser
+  parsers.cpp = {
+    install_info = {
+      url = "https://github.com/taku25/tree-sitter-unreal-cpp",
+      revision = "67198f1b35e052c6dbd587492ad53168d18a19a8",
+      files = { "src/parser.c", "src/scanner.cc" },
+    },
+    filetype = "cpp",
+  }
+
+  -- 2. Register custom Unreal Shader Parser
+  parsers.ushader = {
+    install_info = {
+      url = "https://github.com/taku25/tree-sitter-unreal-shader",
+      revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
+      files = { "src/parser.c", "src/scanner.cc" },
+    },
+    filetype = "ushader",
+  }
+
+  -- 3. Install the parsers
+  ts.install(opts.parsers)
+
+  -- 4. Enable highlighting and indentation manually (modern way)
+  -- This sets up an autocmd to start treesitter for your languages
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = opts.parsers,
+    callback = function()
+    vim.treesitter.start()
+    -- Enable experimental indentation if desired
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+  })
+
+  -- 5. Filetype Routing
+  vim.filetype.add({
+    extension = {
+      h = "cpp",
+      hpp = "cpp",
+      inl = "cpp",
+      usf = "ushader",
+      ush = "ushader",
+      uprojectshader = "ushader",
+    },
+  })
+  end,
+}
+
+--[[
+  config = function(_, opts)
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "TSUpdate",
+      callback = function()
+        local parsers = require("nvim-treesitter.parsers")
+        parsers.cpp = {
+          install_info = {
+            url = "https://github.com/taku25/tree-sitter-unreal-cpp",
+            revision = "67198f1b35e052c6dbd587492ad53168d18a19a8",
+          },
+        }
+        parsers.ushader = {
+          install_info = {
+            url = "https://github.com/taku25/tree-sitter-unreal-shader",
+            revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
+          },
+        }
+      end,
+    })
+    local langs = { "c", "cpp", "ushader", "json" }
+    require("nvim-treesitter").install(langs)
+    local group = vim.api.nvim_create_augroup("MyTreesitter", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = group,
+      pattern = langs,
+      callback = function(args)
+        vim.treesitter.start(args.buf)
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+
+  end,
+
+
   -- version = false, -- last release is way too old and doesn't work on Windows
   -- event = { "BufReadPost", "BufNewFile" },
-    --[[
+
   dependencies = {
     {
       "nvim-treesitter/playground",
@@ -80,54 +179,6 @@ return {
       end,
     },
   },
-    ]]--
-
-  opts = {
-    sync_install = false,
-    auto_install = true,
-    indent = { enable = true },
-    highlight = { enable = true },
-    context_commentstring = { enable = true, enable_autocmd = false },
-    ensure_installed = {
-      "bash",
-      "c",
-      "cpp",
-      "json",
-      "lua",
-      "luadoc",
-      "luap",
-      "markdown",
-      "markdown_inline",
-      "org",
-      "python",
-      "regex",
-      "yaml",
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn", -- set to `false` to disable one of the mappings
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
-    },
-    --[[
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { "BufWrite", "CursorHold" },
-    },
-    ]]--
-  },
-
-  config = function(_, opts)
-    local configs = require("nvim-treesitter.configs")
-    configs.setup(opts)
-
-    -- vim.opt.foldmethod = "indent"
-    -- vim.opt.foldmethod = "expr"
-    -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-    -- vim.opt.nofoldenable   -- Disable folding at startup.
-  end,
-}
+]]
+  --
+-- }
