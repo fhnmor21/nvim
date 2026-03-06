@@ -108,20 +108,20 @@ return {
   },
 
   config = function()
-  local engine_path = "/var/home/bazzite/Arch/UnrealEngine/"
+    local engine_path = "/var/home/bazzite/Arch/UnrealEngine/"
 
-  require("UnrealDev").setup({})
+    require("UnrealDev").setup({})
 
-  -- Initialize UEP (Project Structure)
-  require("UEP").setup({
-    engine_path = engine_path,
-  })
+    -- Initialize UEP (Project Structure)
+    require("UEP").setup({
+      engine_path = engine_path,
+    })
 
-  -- Initialize UBT (Build Tools)
-  require("UBT").setup({
-    engine_path = engine_path,
-  })
+    -- Initialize UBT (Build Tools)
+    require("UBT").setup({
+      engine_path = engine_path,
+    })
 
-  -- Ensure UNL and UNX setups are triggered (via their opts in dependencies)
+    -- Ensure UNL and UNX setups are triggered (via their opts in dependencies)
   end,
 }
