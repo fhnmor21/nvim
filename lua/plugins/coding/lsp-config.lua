@@ -23,60 +23,74 @@ return {
   local lspconfig = require("lspconfig")
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-  -- 1. Setup Mason
   require("mason").setup()
 
-  -- 2. Setup Mason-LSPConfig with Handlers inside the setup call
-  -- This fixes the "setup_handlers is nil" error
   require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "clangd" },
     handlers = {
-      -- The first entry (without a key) is the default handler
+      -- 1. Default handler
       function(server_name)
       lspconfig[server_name].setup({
         capabilities = capabilities,
       })
       end,
 
-      -- Specific handler for lua_ls
-      ["lua_ls"] = function()
-      lspconfig.lua_ls.setup({
+      -- 2. Unreal-optimized clangd setup
+      ["clangd"] = function()
+      lspconfig.clangd.setup({
         capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } },
-            workspace = { checkThirdParty = false },
-          },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--pch-storage=memory",
+          "--header-insertion=never",
+          "--completion-style=detailed",
+          "--all-scopes-completion",
+          -- Add this if you use Unreal Engine's compile_commands.json
+          "--query-driver=C:/Program Files/Microsoft Visual Studio/**/bin/Hostx64/x64/cl.exe",
         },
       })
       end,
+
+      -- 3. Optimized lua_ls (using lazydev for the workspace)
+  ["lua_ls"] = function()
+  lspconfig.lua_ls.setup({
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        diagnostics = { globals = { "vim" } },
+        workspace = { checkThirdParty = false },
+      },
+    },
+  })
+  end,
     }
   })
 
-  -- 3. Mason-Null-LS
   require("mason-null-ls").setup({
     automatic_setup = true,
   })
 
-  -- 4. LspAttach for Keymaps
+  -- LspAttach Autocmd for Keymaps
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                               callback = function(ev)
-                              local opts = { buffer = ev.buf }
+                              local map = function(keys, func, desc)
+                              vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+                              end
 
-                              -- Lspsaga UI Keymaps
-                              vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", { desc = "Hover", buffer = ev.buf })
-                              vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<cr>", { desc = "Go to Definition", buffer = ev.buf })
-                              vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<cr>", { desc = "Peek Definition", buffer = ev.buf })
-                              vim.keymap.set("n", "gr", "<cmd>Lspsaga finder<cr>", { desc = "LSP Finder", buffer = ev.buf })
-                              vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>", { desc = "Code Action", buffer = ev.buf })
-                              vim.keymap.set("n", "<leader>cr", "<cmd>Lspsaga rename<cr>", { desc = "Rename", buffer = ev.buf })
-                              vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outline<cr>", { desc = "Outline", buffer = ev.buf })
+                              map("K", "<cmd>Lspsaga hover_doc<cr>", "Hover")
+                              map("gd", "<cmd>Lspsaga goto_definition<cr>", "Definition")
+                              map("gp", "<cmd>Lspsaga peek_definition<cr>", "Peek")
+                              map("gr", "<cmd>Lspsaga finder<cr>", "Finder")
+                              map("<leader>ca", "<cmd>Lspsaga code_action<cr>", "Code Action")
+                              map("<leader>cr", "<cmd>Lspsaga rename<cr>", "Rename")
+                              map("<leader>co", "<cmd>Lspsaga outline<cr>", "Outline")
 
-                              -- Fallbacks/Standard
-                              vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                              vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-                              vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+                              -- Standard Fallbacks
+                              map("gD", vim.lsp.buf.declaration, "Declaration")
+                              map("gi", vim.lsp.buf.implementation, "Implementation")
+                              map("<C-k>", vim.lsp.buf.signature_help, "Signature Help")
                               end,
   })
   end
