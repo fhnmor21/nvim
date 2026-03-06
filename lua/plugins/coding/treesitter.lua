@@ -9,8 +9,7 @@ return {
     -- but we can still pass a list here for the config function to use.
     parsers = {
       "bash", "json", "lua", "luadoc", "luap", "markdown",
-      "markdown_inline", "python", "regex", "yaml",
-      "unreal_cpp", "ushader"
+      "markdown_inline", "python", "regex", "yaml"
     },
   },
 
@@ -24,7 +23,7 @@ return {
       local parsers = require("nvim-treesitter.parsers")
 
       -- Register custom Unreal C++ Parser
-      parsers.unreal_cpp = {
+      parsers.cpp = {
         install_info = {
           url = "https://github.com/taku25/tree-sitter-unreal-cpp",
           revision = "4e4f8252d519db6d1a52a89e75d1d86ddeca515f",
@@ -49,14 +48,14 @@ return {
         },
       }
 
-      vim.treesitter.language.register("unreal_cpp", {"cpp"})
+      vim.treesitter.language.register("cpp", {"cpp"})
 
       -- Filetype Routing
       vim.filetype.add({
         extension = {
-          h = "unreal_cpp",
-          hpp = "unreal_cpp",
-          inl = "unreal_cpp",
+          h = "cpp",
+          hpp = "cpp",
+          inl = "cpp",
           usf = "ushader",
           ush = "ushader",
           uprojectshader = "ushader",
