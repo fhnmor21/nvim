@@ -110,6 +110,16 @@ return {
   config = function()
     local engine_path = "/var/home/bazzite/Arch/UnrealEngine/"
 
+    setup_modules = {
+        UBT = true,
+        UEP = true,
+        ULG = true,
+        USH = true,
+        UCM = true,
+        UEA = true,
+        UNX = true,
+      },
+
     require("UnrealDev").setup({})
 
     -- Initialize UEP (Project Structure)
@@ -122,6 +132,23 @@ return {
       engine_path = engine_path,
     })
 
-    -- Ensure UNL and UNX setups are triggered (via their opts in dependencies)
+    -- keymaps
+    local map = function(keys, func, desc)
+      vim.keymap.set("n", keys, func, { desc = "UE: " .. desc })
+    end
+
+    map("<leader>uw", "<cmd>UEP web_doc<cr>", "Go to Web Docs")
+    map("<leader>ub", "<cmd>UEP build_cs<cr>", "Open Build.cs")
+    map("<leader>ut", "<cmd>UEP target_cs<cr>", "Open Target.cs")
+    map("<leader>um", "<cmd>UEP find_module<cr>", "Find Module for Item")
+    map("<leader>uv", "<cmd>UEP implement_virtual<cr>", "Implement Virtual")
+    map("<leader>up", "<cmd>UEP goto_super_def<cr>", "Go to Parent's definition")
+    map("<leader>ud", "<cmd>UEP goto_definition<cr>", "Go to definition")
+    map("<leader>ue", "<cmd>UEP enums<cr>", "Go to Enum definition")
+    map("<leader>us", "<cmd>UEP structs<cr>", "Go to Struct definition")
+    map("<leader>uc", "<cmd>UEP classes<cr>", "Go to Class definition")
+    map("<leader>uh", "<cmd>UEP find_derived<cr>", "Find derived Classes")
+    map("<leader>ui", "<cmd>UEP add_include<cr>", "Insert Include for Class")
+
   end,
 }
