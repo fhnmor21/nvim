@@ -9,6 +9,7 @@ return {
     -- but we can still pass a list here for the config function to use.
     parsers = {
       "bash",
+      "cpp",
       "json",
       "lua",
       "luadoc",
@@ -24,6 +25,7 @@ return {
   config = function(_, opts)
     local ts = require("nvim-treesitter")
 
+    --[[
     -- add the extra parsers
     vim.api.nvim_create_autocmd("User", {
       pattern = "TSUpdate",
@@ -31,15 +33,15 @@ return {
         local parsers = require("nvim-treesitter.parsers")
 
         -- Register custom Unreal C++ Parser
-        parsers.cpp = {
+        parsers.unreal_cpp = {
           install_info = {
             url = "https://github.com/taku25/tree-sitter-unreal-cpp",
             revision = "4e4f8252d519db6d1a52a89e75d1d86ddeca515f",
 
-            location = "parser",        -- only needed if the parser is in subdirectory of a "monorepo"
-            generate = true,            -- only needed if repo does not contain pre-generated `src/parser.c`
-            generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
-            queries = "queries/neovim", -- also install queries from given directory
+            location = "parser", -- only needed if the parser is in subdirectory of a "monorepo"
+            generate = true,     -- only needed if repo does not contain pre-generated `src/parser.c`
+            -- generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+            -- queries = "queries/neovim", -- also install queries from given directory
           },
         }
 
@@ -49,21 +51,21 @@ return {
             url = "https://github.com/taku25/tree-sitter-unreal-shader",
             revision = "26f0617475bb5d5accb4d55bd4cc5facbca81bbd",
 
-            location = "parser",        -- only needed if the parser is in subdirectory of a "monorepo"
-            generate = true,            -- only needed if repo does not contain pre-generated `src/parser.c`
-            generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
-            queries = "queries/neovim", -- also install queries from given directory
+            location = "parser", -- only needed if the parser is in subdirectory of a "monorepo"
+            generate = true,     -- only needed if repo does not contain pre-generated `src/parser.c`
+            -- generate_from_json = false, -- only needed if repo does not contain `src/grammar.json` either
+            -- queries = "queries/neovim", -- also install queries from given directory
           },
         }
 
-        vim.treesitter.language.register("cpp", { "cpp" })
+        vim.treesitter.language.register("cpp", { "unreal_cpp" })
 
         -- Filetype Routing
         vim.filetype.add({
           extension = {
-            h = "cpp",
-            hpp = "cpp",
-            inl = "cpp",
+            h = "unreal_cpp",
+            hpp = "unreal_cpp",
+            inl = "unreal_cpp",
             usf = "ushader",
             ush = "ushader",
             uprojectshader = "ushader",
@@ -71,6 +73,7 @@ return {
         })
       end,
     })
+    --]]
 
     -- Install the parsers
     ts.install(opts.parsers)

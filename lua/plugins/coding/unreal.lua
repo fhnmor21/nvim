@@ -15,6 +15,7 @@ return {
       "taku25/UNL.nvim",
       build = "cargo build --release --manifest-path scanner/Cargo.toml",
       opts = {
+        -- Configuration for UI backends
         ui = {
           picker = {
             mode = "auto",
@@ -30,15 +31,27 @@ return {
             prefer = { "fidget", "window", "notify" },
           },
         },
+
+        -- Configuration for logging
         logging = {
           level = "info",
           echo = { level = "warn" },
           notify = { level = "error", prefix = "[UNL]" },
           file = { enable = true, max_kb = 512, rotate = 3, filename = "unl.log" },
         },
+
+        -- Configuration for the cache directory
         cache = { dirname = "UNL_cache" },
         project = {
           localrc_filename = ".unlrc.json",
+          search_stop_at_home = true,
+        },
+
+        -- Configuration for project searching
+        project = {
+          -- The filename for project-local settings
+          localrc_filename = ".unlrc.json",
+          -- If true, the search will not go above the home directory
           search_stop_at_home = true,
         },
       },
@@ -47,9 +60,6 @@ return {
     -- UNX: The Explorer with your original UI/VCS/Keymap options
     {
       "taku25/UNX.nvim",
-      keys = {
-        { "<leader>ux", "<cmd>UNX toggle<cr>", desc = "Toggle Unreal Explorer" },
-      },
       opts = {
         window = {
           position = "right",
@@ -103,22 +113,22 @@ return {
     "taku25/ULG.nvim",
     "taku25/UDB.nvim",
     "taku25/UEA.nvim",
-    "taku25/neo-tree-unl.nvim",
     { "taku25/USX.nvim", lazy = false },
+    -- "taku25/neo-tree-unl.nvim",
   },
 
   config = function()
     local engine_path = "/var/home/bazzite/Arch/UnrealEngine/"
 
     setup_modules = {
-        UBT = true,
-        UEP = true,
-        ULG = true,
-        USH = true,
-        UCM = true,
-        UEA = true,
-        UNX = true,
-      },
+          UBT = true,
+          UEP = true,
+          ULG = true,
+          USH = true,
+          UCM = true,
+          UEA = true,
+          UNX = true,
+        }
 
     require("UnrealDev").setup({})
 
@@ -136,7 +146,8 @@ return {
     local map = function(keys, func, desc)
       vim.keymap.set("n", keys, func, { desc = "UE: " .. desc })
     end
-
+        
+    map("<leader>ux", "<cmd>UNX toggle<cr>", "Toggle Unreal Explorer" )
     map("<leader>uw", "<cmd>UEP web_doc<cr>", "Go to Web Docs")
     map("<leader>ub", "<cmd>UEP build_cs<cr>", "Open Build.cs")
     map("<leader>ut", "<cmd>UEP target_cs<cr>", "Open Target.cs")
@@ -149,6 +160,5 @@ return {
     map("<leader>uc", "<cmd>UEP classes<cr>", "Go to Class definition")
     map("<leader>uh", "<cmd>UEP find_derived<cr>", "Find derived Classes")
     map("<leader>ui", "<cmd>UEP add_include<cr>", "Insert Include for Class")
-
   end,
 }
