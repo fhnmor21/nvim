@@ -12,7 +12,8 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "jay-babu/mason-null-ls.nvim",
     "nvimtools/none-ls.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    --"hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp", 
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       "nvimdev/lspsaga.nvim",
@@ -28,7 +29,8 @@ return {
   },
   config = function()
     local lspconfig = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     require("mason").setup()
 

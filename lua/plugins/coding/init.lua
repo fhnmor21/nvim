@@ -9,7 +9,8 @@ return {
   require("plugins.coding.trouble"),
 
   -- auto completion
-  require("plugins.coding.cmp"),
+  -- require("plugins.coding.cmp"),
+  -- require("plugins.coding.blink"),
 
   -- git
   require("plugins.coding.git"),
