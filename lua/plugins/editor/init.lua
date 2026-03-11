@@ -14,8 +14,9 @@ return {
   -- search/replace in multiple files
   require("plugins.editor.spectre"),
 
-  -- search/replace in multiple files
-  require("plugins.editor.auto-pairs"),
+  -- bracket matching and highlight
+  -- require("plugins.editor.auto-pairs"),
+  require("plugins.editor.blink-pairs"),
 
   -- cursor multi-select
   {
