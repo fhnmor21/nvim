@@ -160,5 +160,6 @@ return {
     map("<leader>uc", "<cmd>UEP classes<cr>", "Go to Class definition")
     map("<leader>uh", "<cmd>UEP find_derived<cr>", "Find derived Classes")
     map("<leader>ui", "<cmd>UEP add_include<cr>", "Insert Include for Class")
+    map("<leader>uf", "<cmd>UEP switch<cr>", "Switch header and source files")
   end,
 }
